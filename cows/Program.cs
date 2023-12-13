@@ -1,112 +1,55 @@
-﻿//hemmati 
-//gavdari
+﻿//// hemmati
+///tamrin damdari
 
-
-
-
-
-
-
-class Animal
+public abstract class Animal
 {
-    public string nam;
-    public bool gender;
-    public float weight;
-    public DateTime birthDate { get; init; }
-
-    List<Environment> Environment = new List<Environment>();
-
-    public virtual float srsFactor()
+    static Animal()
     {
+        NumOfAnimals = 0;
 
     }
 
-    public int life()
+    public Animal()
     {
-
+        NumOfAnimals++;
+        Number = NumOfAnimals;
     }
+    public static int NumOfAnimals { get; private set; }
 
-    public int tmToDie()
+    public int Number { get; private set; }
+    public int ID { get; init; }
+
+    public string Name { get; init; }
+
+    public bool isMale { get; init; }
+
+    public double Weight { get; init; }
+
+    public DateTime BDate { get; init; }
+
+    public List<Product> Products { get; set; }
+
+    public List<EnvironmentData> Environments { get; set; }
+
+    public List<Cost> Costs { get; set; }
+
+    public abstract double TotalStressFactor(EnvironmentData Env);
+
+    public abstract int life();
+
+    public abstract int timeToDie();
+
+    public abstract double killPriority();
+
+    public abstract int costPerDay();
+
+    public abstract decimal IncomePerDay();
+
+    public abstract decimal IncomeMeal(double priceMeat);
+
+
+    public override string ToString()
     {
-
+        return $"Id: {ID} Name: {Name} IsMale: {isMale} Weight: {Weight}Gr  Birth Date: {BDate} Number Of Animals: {NumOfAnimals}";
     }
-
-    public float killPri()
-    {
-
-    }
-
-    public int coPerDay()
-    {
-
-    }
-
-    public int valPerDay()
-    {
-
-    }
-
-}
-class SheepParameter
-{
-    public int timeToStand;
-    public int timeToDeal;
-    public int timeToRelax;
-    public int numberOfMilkProduct;
-    public DateTime date;
-}
-
-
-class healthParameter
-{
-    public string name;
-    public int current;
-    public int standart;
-
-    public override float stressFactor()
-    {
-
-    }
-}
-
-class cow : Animal
-{
-    public DateTime birthDate { get; init; }
-    public static readonly int maxlife { get; set; }
-
-    List<Environment> Environment = new List<Environment>();
-    List<CowParameter> CowParameter = new List<CowParameter>();
-    public static int number;
-}
-
-class sheep : Animal
-{
-    public DateTime birthDate { get; init; }
-    public static readonly int maxlife { get; set; }
-
-    List<Environment> Environment = new List<Environment>();
-    List<SheepParameter> CowParameter = new List<SheepParameter>();
-    public static int number;
-}
-class CowParameter
-{
-    public int timeToStand;
-    public int timeToDeal;
-    public int timeToRelax;
-    public int numberOfMilkProduct;
-    public DateTime date;
-}
-
-
-
-class Environment
-{
-    public double temp;
-    public double tds;
-    public double density;
-    public double db;
-    public double aqi;
-    public double ox;
-
-    public DateTime date;
 }
